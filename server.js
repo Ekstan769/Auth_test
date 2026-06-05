@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
-require("dotenv").config();
 const app = express();
 
 const connectDb = require("./config/db");
@@ -13,9 +13,6 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 
-const port = process.env.PORT || 5003;
-
-
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
@@ -23,7 +20,10 @@ app.get("/", (req, res) => {
 // routes
 app.use("/api/users", userRoutes);
 
-app.listen(port, () => {
+
+const PORT = process.env.PORT || 5003;
+
+app.listen(PORT, () => {
     connectDb();
-    console.log("Server is running on port ${port}");
+    console.log(`Server is running on port ${PORT}`);
 });

@@ -24,6 +24,16 @@ const userSchema =new mongoose.Schema({
         enum: ["user", "moderator", "admin"],
         default: "user",
     },
+
+    // adding lock attempts and lock until
+    loginAttempts: {
+        type: Number,
+        default: 0
+    },
+    lockUntil: {
+        type: Date,
+        default: null
+    }
 },
 { timestamps: true, versionkey: false},
 );
